@@ -1,0 +1,5 @@
+# h5py==3.1.0
+opencv-python==4.5.1.48
+kornia==0.4.1
+torchvision==0.7.0
+pytorch==1.6.0
