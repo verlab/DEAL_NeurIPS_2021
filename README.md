@@ -1,10 +1,10 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-## <b>NRLFeat: Non-Rigid Local Feature Descriptor</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper (Coming soon)]]() [[Container (Coming soon)]]()
+## <b>Extracting Deformation-Aware Local Features byLearning to Deform</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper (Coming soon)]]() [[Container (Coming soon)]]()
 
 <img src='./images/paper_thumbnail.png' align="center" width=900 />
 
-This repository contains the original implementation of the descriptor "<b>NRLFeat: Non-Rigid Local Feature Descriptor</b>", to be presented at NeurIPS 2021. 
+This repository contains the original implementation of the descriptor "<b>Extracting Deformation-Aware Local Features byLearning to Deform</b>", to be presented at NeurIPS 2021. 
 
 
 If you find this code useful for your research, please cite the paper:
