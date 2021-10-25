@@ -22,8 +22,6 @@ If you find this code useful for your research, please cite the paper:
 `Coming soon...` 
 
 
-<img src='images/geobit_match_example.png' align="center" width=1000 />
-
 ## III - Local Installation Alternative
 
 ```
