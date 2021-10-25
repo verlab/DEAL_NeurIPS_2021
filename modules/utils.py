@@ -35,11 +35,11 @@ save = None
 writer = None
 
 
-class NRLFeat:
+class DEAL:
 	'''
-		Class that defines the 'nrlfeat' descriptor abstraction similar to OpenCV interface
+		Class that defines the 'deal' descriptor abstraction similar to OpenCV interface
 	'''
-	def __init__(self, model_path = '/homeLocal/guipotje/sshfs/models/nrlfeat-pretrainedhardnet/240.pth', sift = True):
+	def __init__(self, model_path, sift = True):
 		self.model_path = model_path
 		sys.path.append(os.path.dirname(model_path))
 		import TPS_Transformer

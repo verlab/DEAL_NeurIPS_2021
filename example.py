@@ -1,10 +1,10 @@
 import cv2 # opencv to read images and extract keypoints
-from modules.utils import NRLFeat #include the modules on your path
+from modules.utils import DEAL #include the modules on your path
 
 
 if __name__ == "__main__":
     net_path = 'weights/newdata-DEAL-big.pth' # weight path
-    nrlfeat = NRLFeat(net_path, sift = True) # Create the descriptor and load arctecture
+    nrlfeat = DEAL(net_path, sift = True) # Create the descriptor and load arctecture
     sift = cv2.SIFT_create()
 
     img_path = "./example/notredame.png"
