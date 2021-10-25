@@ -4,7 +4,7 @@
 
 <img src='./images/paper_thumbnail.png' align="center" width=900 />
 
-This repository contains the original implementation of the descriptor "<b>NRLFeat: Non-Rigid Local Feature Descriptor</b>", presented at NeurIPS 2021. 
+This repository contains the original implementation of the descriptor "<b>NRLFeat: Non-Rigid Local Feature Descriptor</b>", to be presented at NeurIPS 2021. 
 
 
 If you find this code useful for your research, please cite the paper:
