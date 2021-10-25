@@ -133,6 +133,7 @@ dependencies:
   - zstd=1.5.0=ha95c52a_0
   - pip:
     - cycler==0.10.0
+    - h5py==3.5.0
     - kiwisolver==1.3.2
     - matplotlib==3.4.3
     - protobuf==3.19.0
