@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-## <b>NRLFeat: Non-Rigid Local Feature Descriptor</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper]]() [[Container]]()
+## <b>NRLFeat: Non-Rigid Local Feature Descriptor</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper (Coming soon)]]() [[Container (Coming soon)]]()
 
 <img src='./images/paper_thumbnail.png' align="center" width=900 />
 
