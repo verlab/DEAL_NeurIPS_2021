@@ -26,7 +26,7 @@ If you find this code useful for your research, please cite the paper:
 
 ```
 conda env create --file ./environment.yml
-conda activate nrlfeat
+conda activate deal
 ```
 
 - Testing

@@ -1,4 +1,4 @@
-name: nrlfeat
+name: deal
 channels:
   - pytorch
   - conda-forge
