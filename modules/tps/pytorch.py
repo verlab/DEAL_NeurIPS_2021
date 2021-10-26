@@ -10,7 +10,7 @@ def tps(theta, ctrl, grid):
     The TPS surface is a minimum bend interpolation surface defined by a set of control points.
     The function value for a x,y location is given by
     
-        TPS(x,y) := theta[-3] + theta[-2]*x + theta[-1]*y + \sum_t=0,T theta[t] U(x,y,ctrl[t])
+        TPS(x,y) := theta[-3] + theta[-2]*x + theta[-1]*y + \\sum_t=0,T theta[t] U(x,y,ctrl[t])
         
     This method computes the TPS value for multiple batches over multiple grid locations for 2 
     surfaces in one go.

@@ -12,3 +12,5 @@ if __name__ == "__main__":
 
     kps = sift.detect(img)
     desc = nrlfeat.compute(img, kps)
+
+    print("Desc Shape:{}".format(desc.shape))

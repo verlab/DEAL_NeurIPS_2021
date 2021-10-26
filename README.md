@@ -25,7 +25,7 @@ If you find this code useful for your research, please cite the paper:
 ## III - Local Installation Alternative
 
 ```
-conda create env -f ./environment.yml
+conda env create --file ./environment.yml
 conda activate nrlfeat
 ```
 
