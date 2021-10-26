@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/verlab/DEAL_NeurIPS_2021/blob/main/notebook/DEAL.ipynb)
 # DEAL - Deformation-Aware Local Features
 ## <b>Extracting Deformation-Aware Local Features by Learning to Deform</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper (Coming soon)]]() [[Container (Coming soon)]]()
 
@@ -19,8 +20,7 @@ If you find this code useful for your research, please cite the paper:
 
 ## II - Colab Notebook 
 
-`Coming soon...` 
-
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/verlab/DEAL_NeurIPS_2021/blob/main/notebook/DEAL.ipynb)
 
 ## III - Local Installation Alternative
 
