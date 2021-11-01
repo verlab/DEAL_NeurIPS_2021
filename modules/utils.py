@@ -45,7 +45,7 @@ class DEAL:
 		import TPS_Transformer
 		useResNet = False if 'ablation-ptn' in model_path else True
 		self.net = TPS_Transformer.BaseModel(useResNet = useResNet, pretrainedResNet = False)
-		self.net.load_state_dict(torch.load(model_path))
+		self.net.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 		self.sift = sift
 		self.toTensor = transforms.ToTensor()
 		self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
