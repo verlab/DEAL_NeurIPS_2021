@@ -30,7 +30,7 @@ conda activate deal
 ```
 
 - Testing
-zz
+
 ```bash
 python example.py
 ```
