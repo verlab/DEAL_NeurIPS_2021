@@ -56,7 +56,7 @@ python example.py
 ## IV - Training the model
 
 The file [run.py](run.py) contains the training code to our model and some optios for ablation studies.
-To train the model you will need to download our preprocessed dataset at [nonrigid-data (88GB)](). Save the dataset on the folder `data`, at the root of this repository.
+To train the model you will need to download our preprocessed dataset at [nonrigid-data (88GB)](). Save the dataset in the folder `data`, at the root of this repository.
 
 
 To train the model we used the command:
@@ -76,7 +76,7 @@ To evaluate our method first calculate the distance matrix between pairs of imag
 python evaluation/benchmark.py --input <DATASET_ROOT> -d --output ./results --sift --tps_path <PATH_TO_TPS_FOLDER_ROOT> --model models/newdata-DEAL-big.pth
 ```
 
-Now compile the results and generate the graphs 
+Now compile the results 
 
 ```
 python evaluation/plotPR.py --input results/<DATASET_NAME> -d --tps_path <PATH_TO_TPS_FOLDER_ROOT> --metric <MMS/MS> --mode erase
