@@ -37,10 +37,10 @@ python example.py
 
 ## IV - Training the model
 
-The file (run.py)[run.py] contains the training code for the SOTA model and some optios for ablation studies.
+The file [run.py](run.py) contains the training code our model and some optios for ablation studies.
 To train the model you will need to download our preprocessed dataset at [nonrigid-data (88GB)](). Save the dataset on the folder `data`, at the root of this repository.
 
-To train the SOTA model we used the command:
+To train the model we used the command:
 ```
 python run.py --mode train --datapath data/train-big.h5 --dataset nonrigid
 ```
