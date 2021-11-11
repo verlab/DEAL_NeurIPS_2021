@@ -294,7 +294,7 @@ def getAccuracy(mat, K = None):
 def readDistMatrix(abs_filename, tps_path): # read all experiments from a dataset inside a folder
 	filename, _ = os.path.splitext(os.path.basename(abs_filename))
 	name_src, name_tgt, name_desc = re.split('__',filename)
-	name_desc = 'NRLFeat'
+	name_desc = 'DEAL'
 	
 	global experiments, c_plot
 
@@ -431,7 +431,7 @@ def get_cmap(n, name='hsv'):
 def plot_grouped_bar_chart(acc, out_path):
 	# set width of bar
 	barWidth = 0.3#0.25
-	colors_dict = {'SIFT':'hotpink','GeoPatch':'r','GeoBit-Heatflow':'blueviolet','Log-Polar':'g','BRAND':'gray','DaLI':'b','TFeat':'aqua', 'ORB':'black', 'FREAK':'tomato', 'DAISY':'greenyellow', 'GeoBit':'gold', 'geopatchHOG':'tomato', 'geopatchConcat':'pink','geopatchIntensity':'indigo', 'GeoPatch-D':'tomato', 'GeoPatch-DR':'gold', 'NRLFeat':'indigo'}#, 'gold', 'tomato']
+	colors_dict = {'SIFT':'hotpink','GeoPatch':'r','GeoBit-Heatflow':'blueviolet','Log-Polar':'g','BRAND':'gray','DaLI':'b','TFeat':'aqua', 'ORB':'black', 'FREAK':'tomato', 'DAISY':'greenyellow', 'GeoBit':'gold', 'geopatchHOG':'tomato', 'geopatchConcat':'pink','geopatchIntensity':'indigo', 'GeoPatch-D':'tomato', 'GeoPatch-DR':'gold', 'DEAL':'indigo'}#, 'gold', 'tomato']
 	print('Saving bar plot in: ', out_path)
 	bars = {}
 	datasets = []
@@ -507,7 +507,6 @@ def plot_accuracies(acc):
 	plt.bar(y_pos, vals, align='center', alpha=0.5)
 	plt.xticks(y_pos, objects)
 	plt.ylabel('Mean Accuracy')
-	#plt.title('Programming language usage')
 
 def main():
 	
@@ -528,9 +527,6 @@ def main():
 		paths = [d for d in glob.glob(args.input+'/*') if os.path.isdir(d)]
 	else:
 		paths = [args.input]
-	
-	#print(args.input)
-	#print(glob.glob(args.input+'/../*')) ; input()
 
 	for dataset in paths:
 		if 'chambre_light' in dataset or 'chambre_medium' in dataset \
@@ -552,6 +548,7 @@ def main():
 		#Load the matrices of 'responses' for each pairwise match for all descriptors
 		for f in experiment_files:
 			readDistMatrix(os.path.abspath(f), args.tps_path)
+
 		check_consistency() # Check the consistency of the loaded mats
 
 		if plotDist:
@@ -619,11 +616,7 @@ def main():
 			plot_name += chunk + '--'
 		plot_name = plot_name[:-2]
 		
-		print(plot_name) ; 
 	
-		#plt_show(dataset + '/' + os.path.basename(os.path.abspath(dataset+'/'))+'_plot.png', plot_name+'_prc')
-		#plt.close()
-
 		final_acc[dataset_name] = accuracies
 
 		all_plots.sort(key = lambda x: x[1] if 'DEAL' not in x[1] else 'Z'+x[1])
@@ -636,7 +629,6 @@ def main():
 			header+= r'& ' + plot_name
 			all_accs.append(accuracies[plot_name])
 			all_aucs.append(auc)
-		print(header + '\n')
 
 		mean_row = ''
 		table_row = r'& \multicolumn{1}{l}{%s ($%d$)}'%(dataset_name.replace(r'_',r'\_'), dataset_size)
@@ -661,29 +653,11 @@ def main():
 			else:
 				mean_dict[plot_name] = [accuracies[plot_name]]
 		print('--------------')
-			#print plot_name ; raw_input()
-		
-		'''
-		table_row+=r'& '
-		for auc, plot_name, x, y in all_plots:
-			if auc == best_auc:
-				table_row += r'& $\textbf{%.2f}$ '%(auc)
-			else:
-				table_row += r'& $%.2f$ '%(auc)
-			mean_row+=str(auc) + ' '
-		'''
+
 
 		row_list.append(table_row + r' \\')
 		mean_list.append(mean_row)
 
-			#print '%s %.2f %.2f' % (plot_name, auc, accuracies[plot_name]) ; raw_input()
-		
-		#plt_show(dataset + '/' + os.path.basename(os.path.abspath(dataset+'/'))+'_plot_acc.png', plot_name + '_acc', False)
-		#plt.close()
-	#plot_grouped_bar_chart(final_acc, out_path=args.input + '/' + 'bar_plotAcc')
-
-	for row in row_list:
-		print(row)
 
 	mode = 'w'
 
@@ -703,9 +677,7 @@ def main():
 
 		f.write('\n')
 
-	#& AUC & $0.20$ & $0.16$ & $\mathit{0.31}$ & $0.22$ & $0.28$ & $0.25$ & $0.26$ & $\mathit{0.31}$ & $\mathbf{0.32}$  \\
-
-	curr_dataset = os.path.basename(args.input)
+	curr_dataset = os.path.basename(os.path.abspath(args.input))
 
 	avg_row_str = '& MS '
 	print('\n------- average MS --------')
@@ -716,14 +688,8 @@ def main():
 		avg_ms =np.mean(np.array(v))
 		print('Method: %s, score: %.3f'%(k ,avg_ms))
 		avg_ms = np.round(avg_ms, 2)
-		# if avg_ms == max_ms:
-		# 	avg_row_str+=' & $\\mathit{%.2f}$ '%(avg_ms)
-		# else:
 		avg_row_str+=' & $%.2f$ '%(avg_ms)
 	print('-----------------------------')
-
-	print(header)
-	print(avg_row_str)
 
 	with open('table_means.txt', mode) as f:
 		f.write(header+'\n')
@@ -732,5 +698,5 @@ def main():
 	with open(curr_dataset+'.dict', 'wb') as f:
 		pickle.dump(mean_dict, f, pickle.HIGHEST_PROTOCOL)
 
-
-main()
+if __name__ == "__main__":
+	main()

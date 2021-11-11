@@ -39,6 +39,8 @@ def check_dir(f):
 	if not os.path.exists(f):
 		os.makedirs(f)
 
+
+
 def parseArg():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-i", "--input", help="Input path containing single or several (use -d flag) PNG-CSV dataset folders"
@@ -53,6 +55,10 @@ def parseArg():
 	, action = 'store_true')
 	parser.add_argument("--tps_path", help="Directory with refined TPS path and keypoints"
 	, required=False, default = '')
+	parser.add_argument("--model", help="Path to trained model"
+	, required=False, default = 'models/newdata-DEAL-big.pth')
+	parser.add_argument("--exp-name", help="Name of the experiment"
+	, required=False, default = 'DEAL')
 
 	args = parser.parse_args()
 
@@ -105,7 +111,7 @@ def save_dist_matrix(ref_kps, ref_descriptors, ref_gt, tgt_kps, descriptors, tgt
 			if ref_gt[i]['valid'] and tgt_gt[i]['valid'] and tgt_gt[j]['valid']:
 				dist_mat[i,j] = np.linalg.norm(ref_descriptors[m]-descriptors[n]) #distance.euclidean(ref_d,tgt_d) #np.linalg.norm(ref_d-tgt_d)
 
-	print('Time to match NRLFeat: %.3f'%(time.time() - begin))
+	print('Time to match DEAL: %.3f'%(time.time() - begin))
 
 	mins = np.argmin(np.where(dist_mat >= 0, dist_mat, 65000), axis=1)
 	for i,j in enumerate(mins):
@@ -124,11 +130,13 @@ def save_dist_matrix(ref_kps, ref_descriptors, ref_gt, tgt_kps, descriptors, tgt
 
 
 def run_benchmark(args):
-
-	from modules.utils import NRLFeat
-	net_path = '/homeLocal/guipotje/models/ablation-TPSW-geo-pretrain-3ep/ablation-TPSW-geo-pretrain-3ep.pth'
-	extractor = NRLFeat(net_path, sift = args.sift)
-	exp_name = os.path.basename(os.path.dirname(net_path)) + '_' + os.path.splitext(os.path.basename(net_path))[0]
+	import sys, os
+	deal_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+	sys.path.append(deal_dir)
+	from modules.utils import DEAL
+	net_path = args.model
+	extractor = DEAL(net_path, sift = args.sift)
+	exp_name = args.exp_name
 
 	print('Running benchmark')
 
@@ -143,33 +151,28 @@ def run_benchmark(args):
 		exp_list = [args.input]
 
 	exp_list = list(filter(lambda x: 'DeSurTSampled' in x or  'Kinect1' in x or 'Kinect2Sampled' in x or 'SimulationICCV' in x, exp_list))
-	#exp_list = list(filter(lambda x: 'DeSurTSampled' in x , exp_list))
-
+	print("Found {} folders".format(len(exp_list)))
 	for exp_dir in tqdm.tqdm(exp_list):
 
-		dataset_name = os.path.join(*os.path.abspath(exp_dir).split('/')[-2:]) ; #print(dataset_name) ; input()
+		dataset_name = os.path.join(*os.path.abspath(exp_dir).split('/')[-2:])
 
 		experiment_files = glob.glob(exp_dir + "/*-rgb*")
-
-		#print(experiment_files) ; input()
+		# print('Dataset: {}. Found {} exp files'.format(dataset_name, len(experiment_files)))
 	
 		master_f = ''
 		for exp_file in experiment_files:
 			if 'master' in exp_file or 'ref' in exp_file:
 				fname = exp_file.split('-rgb')[0]
-				#print(fname) ; input()
+
 				if not args.sift:
 					ref_gt = np.recfromcsv(fname + '.csv', delimiter=',', filling_values=np.nan, case_sensitive=True, deletechars='', replace_space=' ')
 					correct_old_csv(ref_gt)
 					ref_kps = gen_keypoints_from_csv(ref_gt)
-					#print(ref_descriptors.shape) ; input()
+
 				else:
 					tps_fname = os.path.join(args.tps_path, *fname.split('/')[-3:])
 					ref_gt = np.recfromcsv(tps_fname + '.sift', delimiter=',', filling_values=np.nan, case_sensitive=True, deletechars='', replace_space=' ')
 					ref_kps = distmat_tools.load_cv_kps(ref_gt)
-					#for kp in ref_kps:
-					#	kp.size *= 0.5
-					#print(tps_fname) ; input()
 					
 				img = fname + '-rgb.png'
 				ref_descriptors = extractor.compute(img, ref_kps)
@@ -187,8 +190,6 @@ def run_benchmark(args):
 					tps_fname = os.path.join(args.tps_path, *fname.split('/')[-3:])
 					tgt_gt = np.recfromcsv(tps_fname + '.sift', delimiter=',', filling_values=np.nan, case_sensitive=True, deletechars='', replace_space=' ')
 					tgt_kps = distmat_tools.load_cv_kps(tgt_gt)
-					#for kp in tgt_kps:
-					#	kp.size *= 0.5 #np.random.randint(0,360)
 
 				img = fname + '-rgb.png'
 				descriptors = extractor.compute(img, tgt_kps)
@@ -202,11 +203,13 @@ def run_benchmark(args):
 
 				result_dir = os.path.join(args.output,experiment_name) + '/' + dataset_name + '/' + exp_dir_target
 				check_dir(result_dir)
-				#ref_descriptors, ref_gt = descriptors, tgt_gt
+
 				if not args.sift:
 					save_dist_matrix(ref_kps,ref_descriptors,ref_gt, tgt_kps, descriptors,tgt_gt, os.path.join(result_dir,mat_fname))
 				else:
 					distmat_tools.save(ref_descriptors, descriptors, os.path.join(result_dir,mat_fname))
 
 
-run_benchmark(parseArg())
+if __name__ == "__main__":
+	args = parseArg()
+	run_benchmark(args)
