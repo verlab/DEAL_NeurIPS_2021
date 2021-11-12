@@ -1,8 +1,8 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/verlab/DEAL_NeurIPS_2021/blob/main/notebook/DEAL.ipynb)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/verlab/DEAL_NeurIPS_2021/blob/main/notebook/DEAL_visualization.ipynb)
 # DEAL - Deformation-Aware Local Features
-## <b>Extracting Deformation-Aware Local Features by Learning to Deform</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper (Coming soon)]]() [[Container (Coming soon)]]()
+## <b>Extracting Deformation-Aware Local Features by Learning to Deform</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper (Coming soon)]]() [[Container (Coming soon)]]() 
 
 <img src='./images/paper_thumbnail.png' align="center" width=900 />
 
@@ -15,14 +15,14 @@ If you find this code useful for your research, please cite the paper:
 Citation coming soon...
 ```
 
-## I - Ready to Use Container
-
-`Coming soon...` 
-
-## II - Colab Notebook 
+## I - Colab Notebooks
 
 - Simple Usage: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/verlab/DEAL_NeurIPS_2021/blob/main/notebook/DEAL.ipynb)
 - With Visualizations: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/verlab/DEAL_NeurIPS_2021/blob/main/notebook/DEAL_visualization.ipynb)
+
+## II - Ready to Use Container
+
+`Coming soon...` 
 
 ## III - Local Installation Alternative
 
@@ -84,7 +84,7 @@ python evaluation/plotPR.py --input results/<DATASET_NAME> -d --tps_path <PATH_T
 
 ## VI - Datasets
 
-All available datasets are listed on [https://verlab.dcc.ufmg.br/descriptors](https://verlab.dcc.ufmg.br/descriptors)
+All available datasets are listed on [https://verlab.dcc.ufmg.br/descriptors/neurips2021](https://verlab.dcc.ufmg.br/descriptors/neurips2021)
 
 **VeRLab:** Laboratory of Computer Vison and Robotics https://www.verlab.dcc.ufmg.br
 <br>
