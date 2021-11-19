@@ -15,6 +15,9 @@ def DEAL(sift=True, weights_folder = './models', **kwargs):
     pth_path = os.path.join(weights_folder, 'newdata-DEAL-big.pth')
     net_path = os.path.join(weights_folder, 'TPS_Transformer.py')
     
+    if not os.path.isdir(weights_folder):
+        os.makedirs(weights_folder)
+
     if not(os.path.isfile(pth_path)):
         pth_link = 'https://github.com/verlab/DEAL_NeurIPS_2021/raw/main/models/newdata-DEAL-big.pth'
         r = requests.get(pth_link, allow_redirects=True)
