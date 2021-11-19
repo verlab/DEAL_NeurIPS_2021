@@ -1,16 +1,19 @@
 dependencies = ['torch', 'os', 'requests', 'tensorboard', 'kornia']
 
-def DEAL(sift=True, **kwargs):
+def DEAL(sift=True, weights_folder = './models', **kwargs):
     import os, requests
     from modules.utils import DEAL as DEAL_Model
-    """ # This docstring shows up in hub.help()
-    Resnet18 model
-    pretrained (bool): kwargs, load pretrained weights into the model
     """
-    model_folder = './models'
+    DEAL - Extracting Deformation-Aware Local Features by Learning to Deform 
+    sift (bool): Indicate if SIFT keypoints are beeing used. If false, the model estimates keypoint rotation. Deafult = True
+    weights_folder (str): Where to download and save the model's weights. Default = './models'
 
-    pth_path = os.path.join(model_folder, 'newdata-DEAL-big.pth')
-    net_path = os.path.join(model_folder, 'TPS_Transformer.py')
+    to use:
+    model.compute(image, keypoints) # just like opencv interface
+    """
+
+    pth_path = os.path.join(weights_folder, 'newdata-DEAL-big.pth')
+    net_path = os.path.join(weights_folder, 'TPS_Transformer.py')
     
     if not(os.path.isfile(pth_path)):
         pth_link = 'https://github.com/verlab/DEAL_NeurIPS_2021/raw/main/models/newdata-DEAL-big.pth'
