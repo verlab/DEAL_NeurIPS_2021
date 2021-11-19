@@ -19,11 +19,13 @@ def DEAL(sift=True, weights_folder = './models', **kwargs):
         os.makedirs(weights_folder)
 
     if not(os.path.isfile(pth_path)):
+        print('Downloading weights...')
         pth_link = 'https://github.com/verlab/DEAL_NeurIPS_2021/raw/main/models/newdata-DEAL-big.pth'
         r = requests.get(pth_link, allow_redirects=True)
         open(pth_path, 'wb').write(r.content)
 
     if not(os.path.isfile(net_path)):
+        print('Downloading TPS_Transformer...')
         net_link = 'https://raw.githubusercontent.com/verlab/DEAL_NeurIPS_2021/main/models/TPS_Transformer.py'
         r = requests.get(net_link, allow_redirects=True)
         open(net_path, 'wb').write(r.content)
