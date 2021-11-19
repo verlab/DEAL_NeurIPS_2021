@@ -24,7 +24,16 @@ Citation coming soon...
 
 `Coming soon...` 
 
-## III - Local Installation Alternative
+## III -  Torch Hub 
+
+Its easy, to get the model loaded with pretrained weights just run:
+```python
+deal = torch.hub.load('verlab/DEAL_NeurIPS_2021', 'DEAL')
+```
+
+Check [example_torch_hub.py](example_torch_hub.py) for more details.
+
+## IV - Local Installation Alternative
 
 To use conda, run:
 
@@ -53,7 +62,7 @@ Now test the installation runing a simple example!
 python example.py
 ```
 
-## IV - Training the model
+## V - Training the model
 
 The file [run.py](run.py) contains the training code to our model and some optios for ablation studies.
 To train the model you will need to download our preprocessed dataset at [nonrigid-data (88GB)](). Save the dataset in the folder `data`, at the root of this repository.
@@ -66,7 +75,7 @@ python run.py --mode train --datapath data/train-big.h5 --dataset nonrigid
 
 The training process consumes about 11GB of memory of the GPU. On a GTX1080Ti it took about 6 hours to complete the training.
 
-## V - Evaluation
+## VI - Evaluation
 
 For the evaluation you will need to download the TPS ground truth files. It contains a dense correspondence  between the masters images and the rest of the sequences.
 
@@ -82,7 +91,7 @@ Now compile the results
 python evaluation/plotPR.py --input results/<DATASET_NAME> -d --tps_path <PATH_TO_TPS_FOLDER_ROOT> --metric <MMS/MS> --mode erase
 ```
 
-## VI - Datasets
+## VII - Datasets
 
 All available datasets are listed on [https://verlab.dcc.ufmg.br/descriptors/neurips2021](https://verlab.dcc.ufmg.br/descriptors/neurips2021)
 
