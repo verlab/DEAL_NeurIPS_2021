@@ -1,8 +1,6 @@
 dependencies = ['torch', 'os', 'requests', 'tensorboard', 'kornia']
 
 def DEAL(sift=True, weights_folder = './models', **kwargs):
-    import os, requests
-    from modules.utils import DEAL as DEAL_Model
     """
     DEAL - Extracting Deformation-Aware Local Features by Learning to Deform 
     sift (bool): Indicate if SIFT keypoints are beeing used. If false, the model estimates keypoint rotation. Deafult = True
@@ -11,6 +9,8 @@ def DEAL(sift=True, weights_folder = './models', **kwargs):
     to use:
     model.compute(image, keypoints) # just like opencv interface
     """
+    import os, requests
+    from modules.utils import DEAL as DEAL_Model
 
     pth_path = os.path.join(weights_folder, 'newdata-DEAL-big.pth')
     net_path = os.path.join(weights_folder, 'TPS_Transformer.py')
