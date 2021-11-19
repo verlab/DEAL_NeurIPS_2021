@@ -1,4 +1,4 @@
-dependencies = ['torch', 'os', 'requests', 'tensorboard', 'kornia']
+dependencies = ['torch', 'os', 'requests', 'cv2', 'numpy', 'tqdm', 'kornia']
 
 def DEAL(sift=True, weights_folder = './models', **kwargs):
     """

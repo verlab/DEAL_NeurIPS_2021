@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import cv2 # opencv to read images and extract keypoints
+# import cv2 # opencv to read images and extract keypoints
 import torch
 
 if __name__ == "__main__":
@@ -20,12 +20,12 @@ if __name__ == "__main__":
     print(deal_help)
 
     deal = torch.hub.load('verlab/DEAL_NeurIPS_2021', 'DEAL', True, './hub_model')
-    sift = cv2.SIFT_create(2048)
+    # sift = cv2.SIFT_create(2048)
 
-    img_path = "./example/notredame.png"
-    img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+    # img_path = "./example/notredame.png"
+    # img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
 
-    kps = sift.detect(img)
-    desc = deal.compute(img, kps)
+    # kps = sift.detect(img)
+    # desc = deal.compute(img, kps)
 
-    print("Desc Shape:{}".format(desc.shape))
+    # print("Desc Shape:{}".format(desc.shape))

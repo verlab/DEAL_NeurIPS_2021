@@ -27,7 +27,6 @@ from modules import losses
 import matplotlib.pyplot as plt
 
 from torchvision.utils import make_grid
-from torch.utils.tensorboard import SummaryWriter
 
 
 logdir = None
@@ -178,6 +177,8 @@ def plot_grid(warped, title, mpl):
 
 
 def train(net, dataset, nepochs=100, lr=1e-4, mpl = True, resume = None):
+	from torch.utils.tensorboard import SummaryWriter
+
 	global logdir, writer, save
 	writer = SummaryWriter(logdir)
 
@@ -296,6 +297,8 @@ def alt_train(net, dataset, nepochs=100, lr=1e-4, mpl = True, alt = 10):
 	Train warper and hardnet in alternate mode, optimizing warper for some steps and then
 	hardnet for some steps
 	'''
+	from torch.utils.tensorboard import SummaryWriter
+
 	global logdir, writer, save
 	writer = SummaryWriter(logdir)
 

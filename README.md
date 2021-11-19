@@ -26,10 +26,14 @@ Citation coming soon...
 
 ## III -  Torch Hub 
 
-Its easy, to get the model loaded with pretrained weights just run:
+Pytorch Hub is a pre-trained model repository designed to facilitate research reproducibility.
+
+Its easy, to get the model loaded with pretrained weights add the following line to your python code:
 ```python
 deal = torch.hub.load('verlab/DEAL_NeurIPS_2021', 'DEAL')
 ```
+
+You may still need to install some dependencies like: requests, kornia, numpy and opencv
 
 Check [example_torch_hub.py](example_torch_hub.py) for more details.
 
