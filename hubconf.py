@@ -1,8 +1,8 @@
 dependencies = ['torch', 'os', 'requests', 'tensorboard', 'kornia']
-import os, requests
-from modules.utils import DEAL as DEAL_Model
 
 def DEAL(sift=True, **kwargs):
+    import os, requests
+    from modules.utils import DEAL as DEAL_Model
     """ # This docstring shows up in hub.help()
     Resnet18 model
     pretrained (bool): kwargs, load pretrained weights into the model
