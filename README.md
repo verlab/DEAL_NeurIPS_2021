@@ -73,7 +73,7 @@ python example.py
 ## V - Training the model
 
 The file [run.py](run.py) contains the training code to our model and some optios for ablation studies.
-To train the model you will need to download our preprocessed dataset at [nonrigid-data (88GB)](). Save the dataset in the folder `data`, at the root of this repository.
+To train the model you will need to download our preprocessed dataset at [nonrigid-data (~88GB)](https://www.verlab.dcc.ufmg.br/nonrigid/train-big.h5). Save the dataset in the folder `data`, at the root of this repository.
 
 
 To train the model we used the command:
