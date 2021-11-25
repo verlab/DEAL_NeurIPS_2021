@@ -78,10 +78,19 @@ To train the model you will need to download our preprocessed dataset at [nonrig
 
 To train the model we used the command:
 ```
-python run.py --mode train --datapath data/train-big.h5 --dataset nonrigid
+python run.py --mode train --datapath data/train-big.h5 --dataset nonrigid --logdir <YOUR_TENSORBOARD_LOGDIR> --name <MODEL_NAME> --epochs 1
 ```
 
 The training process consumes about 11GB of memory of the GPU. On a GTX1080Ti it took about 6 hours to complete the training.
+
+The file ```/modules/NRDataset.py``` contains the implementation dataset class for loading the .h5 file and works out-of-the-box.
+If you want to load the .h5 from scratch, it is organized as follows:
+
+```python
+data = h5py.File(data_path, "r")
+data['imgs/<ID_FILENAME__X>'] # contains the image data, and data['imgs'].keys() follow the standard '<ID_FILENAME]>__1' for the reference and '<ID_FILENAME>__2' for target frame
+data['kps/<ID_FILENAME__X>'] # contains all SIFT keypoints for this image file as a (N, 5) numpy array (size, angle, x, y, octave) for each line, and dict keys follow the same standard as the images described above
+```
 
 ## VI - Evaluation
 
@@ -89,13 +98,13 @@ For the evaluation you will need to download the TPS ground truth files. It cont
 
 To evaluate our method first calculate the distance matrix between pairs of images of the dataset.
 
-```
+```bash
 python evaluation/benchmark.py --input <DATASET_ROOT> -d --output ./results --sift --tps_path <PATH_TO_TPS_FOLDER_ROOT> --model models/newdata-DEAL-big.pth
 ```
 
 Now compile the results 
 
-```
+```bash
 python evaluation/plotPR.py --input results/<DATASET_NAME> -d --tps_path <PATH_TO_TPS_FOLDER_ROOT> --metric <MMS/MS> --mode erase
 ```
 
