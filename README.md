@@ -2,11 +2,11 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/verlab/DEAL_NeurIPS_2021/blob/main/notebook/DEAL.ipynb)
 
 # DEAL - Deformation-Aware Local Features
-## <b>Extracting Deformation-Aware Local Features by Learning to Deform</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper]](https://arxiv.org/pdf/2111.10617.pdf) [[Container (Coming soon)]]() 
+## <b>Extracting Deformation-Aware Local Features by Learning to Deform</b> <br>[[Project Page]](https://www.verlab.dcc.ufmg.br/descriptors/neurips2021/) [[Paper]](https://arxiv.org/pdf/2111.10617.pdf) [[Colab Notebook]](https://github.com/verlab/DEAL_NeurIPS_2021#i---colab-notebooks) 
 
 <img src='./images/paper_thumbnail.png' align="center" width=900 />
 
-This repository contains the original implementation of the descriptor "<b>Extracting Deformation-Aware Local Features byLearning to Deform</b>", to be presented at NeurIPS 2021. 
+This repository contains the original pytorch implementation of the descriptor "<b>Extracting Deformation-Aware Local Features byLearning to Deform</b>", to be presented at NeurIPS 2021. 
 
 
 If you find this code useful for your research, please cite the paper:
